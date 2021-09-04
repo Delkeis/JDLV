@@ -9,6 +9,6 @@ namespace LeJeuDeLaVie.MVVM.Model
 {
     class GridModel
     {
-
+        private int _i;
     }
 }
