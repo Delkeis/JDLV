@@ -1,28 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using LeJeuDeLaVie.MVVM.ViewModel;
 
-namespace LeJeuDeLaVie.MVVM.View
+namespace LeJeuDeLaVie.Mvvm.View
 {
-    /// <summary>
-    /// Logique d'interaction pour GameView.xaml
-    /// </summary>
-    public partial class GameView : UserControl
+    public partial class GameView
     {
         public GameView()
         {
             InitializeComponent();
+
+            var rowDefinitions = GameViewModel.GetRowDefinitions();
+            var columnDefinitions = GameViewModel.GetColumnDefinitions();
+            foreach (var current in columnDefinitions)
+            {
+                GameGrid.ColumnDefinitions.Add(current);
+            }
+            foreach (var current in rowDefinitions)
+            {
+                GameGrid.RowDefinitions.Add(current);
+            }
+            GameGrid = GameViewModel.FillGrid(GameGrid);
         }
+
+        public void NextOnClick(object sender, RoutedEventArgs e)
+        {
+            GameGrid = GameViewModel.UpdateNextTurn(GameGrid);
+        }
+
+        public void StartOnClick(object sender, RoutedEventArgs e)
+        {
+            GameGrid = GameViewModel.RandomFistState(GameGrid);
+        }
+
     }
 }

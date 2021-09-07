@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeJeuDeLaVie.Core;
-using System.Windows.Controls;
-
+﻿using LeJeuDeLaVie.Core;
 
 
 namespace LeJeuDeLaVie.MVVM.ViewModel
 {
-    class MainViewModel : ObservableObject
+    internal class MainViewModel : ObservableObject
     {
         private object _currentView;
 
@@ -25,7 +18,7 @@ namespace LeJeuDeLaVie.MVVM.ViewModel
 
         public object CurrentView
         {
-            get { return _currentView; }
+            get => _currentView;
             set { 
                 _currentView = value;
                 OnPropertyChanged();
@@ -39,14 +32,10 @@ namespace LeJeuDeLaVie.MVVM.ViewModel
             MyCreditViewModel = new CreditViewModel();
             CurrentView = MyGameViewModel;
 
-            GameViewCommand = new RelayCommand(o => { CurrentView = MyGameViewModel; });
-            RulesViewCommand = new RelayCommand(o => { CurrentView = MyRulesViewModel; });
-            CreditViewCommand = new RelayCommand(o => { CurrentView = MyCreditViewModel; });
+            GameViewCommand = new RelayCommand(_ => { CurrentView = MyGameViewModel; });
+            RulesViewCommand = new RelayCommand(_ => { CurrentView = MyRulesViewModel; });
+            CreditViewCommand = new RelayCommand(_ => { CurrentView = MyCreditViewModel; });
         }
 
-        public void AddGameBoard(Grid gameBoard)
-        {
-            
-        }
     }
 }

@@ -1,12 +1,14 @@
-﻿<UserControl x:Class="LeJeuDeLaVie.MVVM.View.CreditView"
+﻿<UserControl x:Class="LeJeuDeLaVie.Mvvm.View.CreditView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LeJeuDeLaVie.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>Auteur : Jean-Michel Bernard</TextBlock>  
-    </Grid>
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock HorizontalAlignment="Center" Margin="20">Le Jeu De La Vie !</TextBlock>
+        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="20">Le Jeu De La Vie est une simulation d'algorithme organique ou automate cellulaire imaginé par John Horton Conway en 1970. Malgré des règles très simples, le jeu de la vie est Turing-complet.(capable d'exécuter des algorithmes)</TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="20">Le projet à été inspiré par <Hyperlink Name="MyLink" RequestNavigate="MyLink_OnClick" NavigateUri="https://www.youtube.com/watch?v=S-W0NX97DB0">la video youtube de Science étonnante</Hyperlink> </TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="10">Auteur : Jean-Michel Bernard</TextBlock>  
+    </StackPanel>
 </UserControl>

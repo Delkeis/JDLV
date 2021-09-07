@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeJeuDeLaVie"
-        xmlns:Classes="clr-namespace:LeJeuDeLaVie.Classes"
         xmlns:viewModel="clr-namespace:LeJeuDeLaVie.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="Le Jeu De La Vie" Height="450" Width="800"
@@ -16,7 +15,7 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
         
-    <Border Background="#272537">
+    <Border Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
@@ -30,29 +29,29 @@
                 <TextBlock Text="Le Jeu De La Vie"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
-                       Foreground="White"
+                       Foreground="Black"
                        FontSize="19"/>
                 <StackPanel Grid.Row="1">
-                    <RadioButton Content="Jeux"
+                    <RadioButton Content="Jeu"
                                  Height="50"
                                  FontSize="15"
-                                 Foreground="White"
+                                 Foreground="Black"
                                  Style="{StaticResource MenuButtonTheme}"
                                  IsChecked="true"
                                  Command="{Binding GameViewCommand}"/>
                     <RadioButton Content="Règles"
                                  Height="50"
                                  FontSize="15"
-                                 Foreground="White"
+                                 Foreground="Black"
                                  Style="{StaticResource MenuButtonTheme}"
-                                 IsChecked="true"
+                                 IsChecked="False"
                                  Command="{Binding RulesViewCommand}"/>
-                    <RadioButton Content="Credit"
+                    <RadioButton Content="Credits"
                                  Height="50"
                                  FontSize="15"
-                                 Foreground="White"
+                                 Foreground="Black"
                                  Style="{StaticResource MenuButtonTheme}"
-                                 IsChecked="true"
+                                 IsChecked="False"
                                  Command="{Binding CreditViewCommand}"/>
 
                 </StackPanel>

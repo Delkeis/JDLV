@@ -1,41 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Automation;
 
-namespace LeJeuDeLaVie.Classes
+namespace LeJeuDeLaVie.Core
 {
-    class Engine
+    internal class Engine
     {
-        private int _gridColumn;
-        private int _gridRow;
-        private bool[,] _gameGrid;
-        public Engine()
-        {
-            _gridColumn = 15;
-            _gridRow = 10;
-            initEngineGameGrid();
-        }
 
-        public void initEngineGameGrid()
+        private static int CountNeighbor(bool[,] grid, int colPos, int rowPos)
         {
-            int i = 0, y= 0;
-            _gameGrid = new bool[_gridColumn, _gridRow];
-            while(i++ < _gridColumn) 
-            { 
-                while(y++ < _gridRow)
-                {
-                    _gameGrid[i, y] = false;
-                }
-                y = 0;
+            var neighborCount = 0;
+
+            var tmpColPos = colPos - 1;
+            var tmpRowPos = rowPos - 1;
+            if (tmpColPos < 0)
+            {
+                tmpColPos = 0;
             }
+            if (tmpRowPos < 0)
+            {
+                tmpRowPos = 0;
+            }
+
+            while (tmpColPos <= colPos + 1)
+            {
+                while (tmpRowPos <= rowPos + 1)
+                {
+                    if (tmpRowPos < grid.GetLength(0) - 1)
+                    {
+                        if (grid[tmpRowPos, tmpColPos] && (tmpRowPos != rowPos || tmpColPos != colPos))
+                        {
+                            neighborCount++;
+                        }
+                        tmpRowPos++;
+                    }
+                    else
+                        tmpRowPos = rowPos + 10;
+                }
+
+                if (tmpColPos < grid.GetLength(1) - 1)
+                {
+                    tmpColPos++;
+                    tmpRowPos = rowPos - 1;
+                    if (tmpRowPos < 0)
+                    {
+                        tmpRowPos = 0;
+                    }
+
+                }
+                else
+                    tmpColPos = colPos + 10;
+            }
+            return neighborCount;
         }
 
-
-        public string engineTest()
+        public static bool CheckCellValue(bool[,] grid, int colPos, int rowPos)
         {
-            return ("hello world");
+            var neighborCount = CountNeighbor(grid, colPos, rowPos);
+
+            if (grid[rowPos, colPos] == true && neighborCount <= 1)
+                return false;
+            if (grid[rowPos, colPos] == true && neighborCount == 2)
+                return true;
+            if (grid[rowPos, colPos] == true && neighborCount >= 3)
+                return false;
+            if (grid[rowPos, colPos] == false && neighborCount is 2)
+                return true;
+
+            return grid[rowPos,colPos];
         }
     }
 }
